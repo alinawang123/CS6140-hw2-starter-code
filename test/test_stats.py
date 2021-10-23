@@ -9,7 +9,7 @@ def sample_data():
 
 @pytest.fixture
 def mean_of_data(sample_data):
-    yield np.mean(sample_data)
+    yield np.mean(sample_data, axis=0)
 
 def test_mean(sample_data):
     """
@@ -19,7 +19,7 @@ def test_mean(sample_data):
     :return:
     """
     mean = calculate_mean(sample_data)
-    assert np.allclose(mean, np.mean(sample_data))
+    assert np.allclose(mean, np.mean(sample_data, axis=0))
 
 
 def test_cov(sample_data, mean_of_data):
