@@ -8,7 +8,7 @@ def calculate_mean(x_data):
     :return: mean_vec
     Note, you may not use np.mean to calculate the mean vector
     """
-    NotImplemented
+    raise NotImplementedError
 
 
 def calculate_cov(x_data, mean_vec):
@@ -18,5 +18,5 @@ def calculate_cov(x_data, mean_vec):
     :return: mean_vec
     Note, you may not use np.cov to calculate the covariance matrix
     """
-    raise NotImplemented
+    raise NotImplementedError
 
