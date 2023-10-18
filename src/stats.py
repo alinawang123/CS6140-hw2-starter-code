@@ -15,7 +15,7 @@ def calculate_cov(x_data, mean_vec):
     """
     This function uses numpy to calculate the covariance matrix of a dataset
     :param x_data: a 2-D numpy array with n_examples as rows and n_features as columns
-    :return: mean_vec
+    :return: cov_mat
     Note, you may not use np.cov to calculate the covariance matrix
     """
     raise NotImplementedError
