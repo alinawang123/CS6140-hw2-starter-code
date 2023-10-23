@@ -1,4 +1,5 @@
-from stats import calculate_mean, calculate_cov
+import numpy as np
+from .stats import calculate_mean, calculate_cov
 
 class GaussianModel:
     def __init__(self, mean=None, cov=None):
@@ -15,6 +16,9 @@ class GaussianModel:
         :param x: A data point
         :return: log-likelihood
         """
+        if len(x) != self.d:
+            raise ValueError("Input data point dimension does not match the model's dimension.")
+
         det_cov = np.linalg.det(self.cov)
         inv_cov = np.linalg.inv(self.cov)
         term1 = -0.5 * self.d * np.log(2 * np.pi)

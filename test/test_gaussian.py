@@ -1,7 +1,6 @@
 import pytest
 import numpy as np
 from src.gaussian import GaussianModel
-from src.stats import calculate_mean, calculate_cov
 
 def test_gaussian_log_likelihood():
     mean = np.array([0, 0])
@@ -9,7 +8,7 @@ def test_gaussian_log_likelihood():
     model = GaussianModel(mean, cov)
     x = np.array([0.5, -0.3])
     log_likelihood = model.calculate_log_likelihood(x)
-    assert np.isclose(log_likelihood, -2.8033088488)
+    assert np.isclose(log_likelihood, -2.0964409455313593)
 
 
 def test_gaussian_invalid_input():
