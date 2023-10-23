@@ -2,14 +2,15 @@ import pytest
 import numpy as np
 from src.stats import calculate_mean, calculate_cov
 
-@pytest.fixture
-def sample_data():
+@pytest.fixture(params = [(5,3), (3,3), (10,5), (1,5), (5, 1)])
+def sample_data(request):
     """
     Generate a sample data matrix with n_rows = number of examples,
     n_cols = number of features
     :yields: the data matrix
     """
-    x = np.random.rand(5,3) # You can change this sample data should you wish to
+    shape = request.param
+    x = np.random.rand(*shape) # You can change this sample data should you wish to
     yield x
 
 @pytest.fixture
@@ -35,5 +36,10 @@ def test_cov(sample_data, mean_of_data):
     :param sample_data:
     """
     cov_mat = calculate_cov(sample_data, mean_of_data)
-    cov = np.cov(sample_data, rowvar=False)
+
+    if sample_data.shape[0] == 1:
+        # If there's only one data point, the covariance matrix should be all zeros
+        cov = np.zeros((sample_data.shape[1], sample_data.shape[1]))
+    else:
+        cov = np.cov(sample_data, rowvar=False)
     assert np.allclose(cov_mat, cov)

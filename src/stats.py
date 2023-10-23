@@ -8,7 +8,10 @@ def calculate_mean(x_data):
     :return: mean_vec
     Note, you may not use np.mean to calculate the mean vector
     """
-    raise NotImplementedError
+    sum_vec = np.sum(x_data, axis = 0)
+    mean_vec = sum_vec/x_data.shape[0]
+    
+    return mean_vec
 
 
 def calculate_cov(x_data, mean_vec):
@@ -18,5 +21,10 @@ def calculate_cov(x_data, mean_vec):
     :return: cov_mat
     Note, you may not use np.cov to calculate the covariance matrix
     """
-    raise NotImplementedError
+    if x_data.shape[0] == 1:
+        return np.zeros((x_data.shape[1], x_data.shape[1]))
+    deviation_matrix = x_data - mean_vec
+    cov_mat = deviation_matrix.T.dot(deviation_matrix)/(x_data.shape[0]-1)
+   
+    return cov_mat
 
